@@ -3,13 +3,29 @@ var WebSocketServer = require('ws').Server
 var wss = new WebSocketServer( { port: 8080 } );
 
 wss.on('connection', function(ws) {
-  console.log('Connected to server');
-  var randomNum;  
+  console.log('Connected to server');  
   
-  for (var i = 0; i < 10; i++) {
-	// integer between 0 and 10 inclusive
-	randomNum = Math.floor(Math.random() * 11);  
-	ws.send(randomNum.toString());
+  var clientRandomNumberUpdater;
+  var sendRandomNumbers = function(ws) {
+	  if(ws.readyState == 1) {
+	  	var randomNum = Math.floor(Math.random() * 11);  
+	  	ws.send(randomNum.toString());	  
+	  }
   }
+  clientRandomNumberUpdater = setInterval(function(){
+	  sendRandomNumbers(ws);
+  }, 1000);  
+  
+  ws.on('message', function(message){
+	  sendRandomNumbers(ws);
+  });
 });
+
+
+
+
+
+
+
+
 

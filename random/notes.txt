@@ -1,3 +1,16 @@
 Receiving messages from the server
 
 https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications
+https://www.wickedlysmart.com/getting-started-with-html5s-web-sockets/
+https://github.com/faye/faye-websocket-ruby
+https://devcenter.heroku.com/articles/ruby-websockets
+https://github.com/imanel/websocket-ruby
+
+
+
+http://localhost:8080/index.html
+
+Upgrade Required
+
+
+9 3 5 10 2 3 2 4 0 0 6 10 8 8 8 7 8 4 0 8 2 9 2 10 9 3 1 4 7 6 0 8 2 7 2 7 7 7 2 0 7 5 9 5 0 8 9 0 5 6 3 8 8 5 9 3 3 ...
