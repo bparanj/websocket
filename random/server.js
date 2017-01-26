@@ -1,31 +1,18 @@
-var WebSocketServer = require('ws').Server
+const WebSocket = require('ws');
 
-var wss = new WebSocketServer( { port: 8080 } );
+const wss = new WebSocket.Server({ port: 8080 });
 
-wss.on('connection', function(ws) {
-  console.log('Connected to server');  
-  
+wss.on('connection', function connection(ws) {
+  ws.on('message', function incoming(message) {
+    console.log('received: %s', message);
+  });
+
   var clientRandomNumberUpdater;
   var sendRandomNumbers = function(ws) {
-	  if(ws.readyState == 1) {
-	  	var randomNum = Math.floor(Math.random() * 11);  
-	  	ws.send(randomNum.toString());	  
-	  }
+	var randomNum = Math.floor(Math.random() * 11);  
+	ws.send(randomNum.toString());	  
   }
   clientRandomNumberUpdater = setInterval(function(){
 	  sendRandomNumbers(ws);
   }, 1000);  
-  
-  ws.on('message', function(message){
-	  sendRandomNumbers(ws);
-  });
 });
-
-
-
-
-
-
-
-
-
